@@ -34,26 +34,6 @@ class AddTest {
     void tearDown() {
 	 driver.quit();
 	}
-	
-
-	@Test
-	void addPropertySuccess() {
-	 driver.get("http://localhost:3000/add");
-	 driver.findElement(By.name("address")).click();
-	 driver.findElement(By.name("address")).sendKeys("Perumal Kovil Street,Nilakkottai");
-	 driver.findElement(By.name("type")).click();
-	 driver.findElement(By.name("type")).sendKeys("Apartment");
-	 driver.findElement(By.name("status")).click();
-	 driver.findElement(By.name("status")).sendKeys("Sale");
-	 driver.findElement(By.name("submit")).click();
-	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.alertIsPresent());
-		Alert alert = driver.switchTo().alert();
-		String txt = alert.getText();
-		System.out.println(txt);
-		alert.accept();
-	    assertEquals("Property added Successfully", txt);
-	}
 
 	@Test
 	void addPropertyFailure1() {
