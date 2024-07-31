@@ -1,15 +1,19 @@
 package com.velan.restapp.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -20,20 +24,20 @@ class AddTest {
 	JavascriptExecutor js;
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		 driver = new ChromeDriver();
 		 js = (JavascriptExecutor) driver;
 		 vars = new HashMap<String, Object>();
 		}
 	
 	@AfterEach
-	public void tearDown() {
+    void tearDown() {
 	 driver.quit();
 	}
 	
 
 	@Test
-	public void addPropertySuccess() {
+	void addPropertySuccess() {
 	 driver.get("http://localhost:3000/add");
 	 driver.findElement(By.name("address")).click();
 	 driver.findElement(By.name("address")).sendKeys("Perumal Kovil Street,Nilakkottai");
@@ -42,11 +46,17 @@ class AddTest {
 	 driver.findElement(By.name("status")).click();
 	 driver.findElement(By.name("status")).sendKeys("Sale");
 	 driver.findElement(By.name("submit")).click();
-	 assertEquals("Property added Successfully", "Property added Successfully");
+	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.alertIsPresent());
+		Alert alert = driver.switchTo().alert();
+		String txt = alert.getText();
+		System.out.println(txt);
+		alert.accept();
+	    assertEquals("Property added Successfully", txt);
 	}
 
 	@Test
-	public void addPropertyFailure1() {
+	void addPropertyFailure1() {
 	 driver.get("http://localhost:3000/add");
 	 driver.findElement(By.name("address")).click();
 	 driver.findElement(By.name("address")).sendKeys("");
@@ -55,11 +65,17 @@ class AddTest {
 	 driver.findElement(By.name("status")).click();
 	 driver.findElement(By.name("status")).sendKeys("Sale");
 	 driver.findElement(By.name("submit")).click();
-	 assertEquals("Please enter Property Address !!!", "Please enter Property Address !!!");
+	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.alertIsPresent());
+		Alert alert = driver.switchTo().alert();
+		String txt = alert.getText();
+		System.out.println(txt);
+		alert.accept();
+	    assertEquals("Please enter Property Address !!!",txt);
 	}
 
 	@Test
-	public void addPropertyFailure2() {
+	void addPropertyFailure2() {
 	 driver.get("http://localhost:3000/add");
 	 driver.findElement(By.name("address")).click();
 	 driver.findElement(By.name("address")).sendKeys("Perumal Kovil Street,Nilakkottai");
@@ -68,11 +84,17 @@ class AddTest {
 	 driver.findElement(By.name("status")).click();
 	 driver.findElement(By.name("status")).sendKeys("Sale");
 	 driver.findElement(By.name("submit")).click();
-	 assertEquals("Please enter Property type !!!", "Please enter Property type !!!");
+	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.alertIsPresent());
+		Alert alert = driver.switchTo().alert();
+		String txt = alert.getText();
+		System.out.println(txt);
+		alert.accept();
+	    assertEquals("Please enter Property type !!!", txt);
 	}
 
 	@Test
-	public void addPropertyFailure3() {
+	void addPropertyFailure3() {
 	 driver.get("http://localhost:3000/add");
 	 driver.findElement(By.name("address")).click();
 	 driver.findElement(By.name("address")).sendKeys("Perumal Kovil Street,Nilakkottai");
@@ -81,7 +103,13 @@ class AddTest {
 	 driver.findElement(By.name("status")).click();
 	 driver.findElement(By.name("status")).sendKeys("");
 	 driver.findElement(By.name("submit")).click();
-	 assertEquals("Please enter Property Status !!!", "Please enter Property Status !!!");
+	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.alertIsPresent());
+		Alert alert = driver.switchTo().alert();
+		String txt = alert.getText();
+		System.out.println(txt);
+		alert.accept();
+	    assertEquals("Please enter Property Status !!!",txt);
 	}
 
 }

@@ -68,7 +68,6 @@ public class PropertiesController {
 			service.deleteProperties(id);
 			msg=SUCCESS;
 		} catch (Exception e) {
-			e.printStackTrace();
 			msg=FAILURE;
 		}
 		return msg;
