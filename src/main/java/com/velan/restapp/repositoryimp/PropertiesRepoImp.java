@@ -1,13 +1,10 @@
 package com.velan.restapp.repositoryimp;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.velan.restapp.model.Properties;
 import com.velan.restapp.repository.PropertiesRepo;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;

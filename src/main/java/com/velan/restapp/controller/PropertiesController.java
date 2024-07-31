@@ -16,11 +16,14 @@ import com.velan.restapp.serviceimp.PropertiesServiceImp;
 
 @RestController
 @RequestMapping("/property")
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:3000")
 public class PropertiesController {
 
 	@Autowired
     PropertiesServiceImp service;
+	
+	static final String SUCCESS="Success";
+	static final String FAILURE="Failure";
 
 	@PostMapping
 	public String insertProperties(@RequestBody Properties prop) {
@@ -28,10 +31,9 @@ public class PropertiesController {
 
 		try {
 			service.addProperties(prop);
-			msg="Success";
+			msg=SUCCESS;
 		} catch (Exception e) {
-			e.printStackTrace();
-			msg = "Failer";
+			msg = FAILURE;
 		}
 		return msg;
 	}
@@ -51,11 +53,10 @@ public class PropertiesController {
 		String msg = "";
 		try {
 			service.updateProperties(prop);
-			msg = "Success";
+			msg = SUCCESS;
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			msg = "Failure";
+			msg = FAILURE;
 		}
 		return msg;
 	}
@@ -65,10 +66,10 @@ public class PropertiesController {
 		String msg="";
 		try {
 			service.deleteProperties(id);
-			msg="Success";
+			msg=SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
-			msg="Failure";
+			msg=FAILURE;
 		}
 		return msg;
 	}

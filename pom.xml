@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.velan</groupId>
-	<artifactId>Docker-Assessment</artifactId>
+	<artifactId>Jenkins-Fullstack</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Docker-Assessment</name>
+	<name>Jenkins-Fullstack</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -49,6 +49,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+          <version>4.22.0</version>
+         </dependency>
 	</dependencies>
 
 	<build>
